@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'org.robovm:robovm-gradle-plugin:1.14.0'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'robovm'
+apply plugin: 'kotlin'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}
+
+ext {
+    roboVMVersion = "1.14.0"
+}
+
+robovm {
+}
+
+dependencies {
+    compile "org.robovm:robovm-rt:${roboVMVersion}"
+    compile "org.robovm:robovm-cocoatouch:${roboVMVersion}"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    compile 'net.sourceforge.argo:argo:3.14'
+
+    compile 'nl.komponents.kovenant:kovenant-core:3.2.0'
+    compile 'nl.komponents.kovenant:kovenant-android:3.2.0'
+    compile 'nl.komponents.kovenant:kovenant-combine:3.2.0'
+    compile 'nl.komponents.kovenant:kovenant-jvm:3.2.0'
+    compile 'nl.komponents.kovenant:kovenant-functional:3.2.0'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+
+    compile 'com.github.kittinunf.fuel:fuel:1.1.0'
+
+    compile 'uy.kohesive.injekt:injekt-core:1.14.1'
+
+    testCompile "junit:junit:4.12"
+    compile project(':core')
+}

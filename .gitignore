@@ -1,0 +1,5 @@
+.gradle
+android/build
+core/build
+ios/build
+ios/robovm-build
